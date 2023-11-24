@@ -27,6 +27,12 @@ impl<T> Default for Path<'_, T> {
     }
 }
 
+impl<T> Path<'_, T> {
+    pub fn new(&self) -> &T {
+        self.segments.last().unwrap()
+    }
+}
+
 impl<'a> From<&'a str> for Path<'a, &'a str> {
     fn from(value: &'a str) -> Path<'a, &'a str> {
         let segments = value.split("::").collect();
